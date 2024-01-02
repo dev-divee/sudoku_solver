@@ -44,8 +44,6 @@ export default {
         [null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null],
       ],
-      solvedSudoku: null,
-      difficulty: "easy",
     };
   },
   methods: {
@@ -147,12 +145,14 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
 }
 
 input {
   width: 100px;
   height: 100px;
   background: white;
+  color: rgb(0, 0, 20);
   border: none;
   margin: 3px;
   font-size: 2.5rem;
@@ -195,14 +195,12 @@ button {
 }
 .buttons button {
   font-size: 2rem;
-  border: none;
+  border: 3px solid lightblue;
   border-radius: 10px;
   padding: 5px 20px;
-  background: linear-gradient(
-    to right,
-    #ffcc00,
-    #ffffff
-  ); /* Gradient from light orange to white */
-  color: rgb(0, 0, 20); /* Dark blue text */
+  background: rgb(0, 0, 20);
+  color: lightblue;
+  font-size: 3rem;
+  font-weight: bold;
 }
 </style>
