@@ -5,8 +5,13 @@
         v-for="(row, rowIndex) in board"
         :key="rowIndex"
         style="display: flex"
+        :class="{ 'sudoku-row-divider': rowIndex % 3 === 2 }"
       >
-        <div v-for="(tile, colIndex) in row" :key="colIndex">
+        <div
+          v-for="(tile, colIndex) in row"
+          :key="colIndex"
+          :class="{ 'sudoku-cell-divider': colIndex % 3 === 2 }"
+        >
           <input
             type="number"
             v-model="board[rowIndex][colIndex]"
@@ -169,6 +174,14 @@ input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.sudoku-row-divider {
+  margin-bottom: 10px; /* Adjust the size of the gap between the 3x3 fields vertically */
+}
+
+.sudoku-cell-divider {
+  margin-right: 10px; /* Adjust the size of the gap between the 3x3 fields horizontally */
 }
 
 button {
