@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <q-header>
       <q-toolbar class="text-lightblue">
-        <h1 style="color: lightblue; top: 20px; left: 20px">SudokuGame</h1>
+        <h1 style="color: lightblue; top: 20px; left: 20px">SudokuSolver</h1>
         <q-btn flat round dense style="font-size: 2rem" id="menuBtn">
           <q-icon name="menu" />
         </q-btn>
