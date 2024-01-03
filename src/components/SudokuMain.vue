@@ -63,6 +63,7 @@ export default {
       });
       console.log(modifiedSudoku);
       this.board = modifiedSudoku;
+      this.win = false;
     },
     solveSudoku() {
       const emptyCell = this.findEmptyCell();
@@ -184,8 +185,8 @@ input::-webkit-outer-spin-button {
   padding: 20px;
 }
 
-.greenBorder {
-  color: red;
+#sudokuBoard.greenBorder {
+  border: 5px solid lightgreen;
 }
 
 .sudoku-row-divider {
@@ -222,5 +223,12 @@ button {
   color: lightblue;
   font-size: 3rem;
   font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+}
+
+.buttons button:hover {
+  /* border: 3px solid lightgreen; */
+  background: lightblue;
+  color: rgb(0, 0, 20);
 }
 </style>
