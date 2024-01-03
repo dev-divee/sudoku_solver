@@ -21,6 +21,7 @@
           />
         </div>
       </div>
+      <q-spinner-hourglass color="blue" size="10rem" id="spinner" />
     </div>
     <div class="buttons">
       <button id="solveSudoku" @click="solveSudoku">Solve</button>
@@ -45,6 +46,7 @@ export default {
         [null, null, null, null, null, null, null, null, null],
       ],
       win: false,
+      loading: false,
     };
   },
   methods: {
@@ -181,6 +183,7 @@ input::-webkit-outer-spin-button {
 }
 
 #sudokuBoard {
+  position: relative;
   border: 5px solid white;
   padding: 20px;
 }
@@ -230,5 +233,12 @@ button {
   /* border: 3px solid lightgreen; */
   background: lightblue;
   color: rgb(0, 0, 20);
+}
+
+#spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
