@@ -1,16 +1,16 @@
 <template>
   <main>
-    <div id="sudokuBoard">
+    <div id="sudokuBoard" :class="{ greenBorder: win }">
       <div
         v-for="(row, rowIndex) in board"
         :key="rowIndex"
         style="display: flex"
-        :class="{ 'sudoku-row-divider': rowIndex % 3 === 2 }"
+        :class="{ 'sudoku-row-divider': (rowIndex + 1) % 3 === 0 }"
       >
         <div
           v-for="(tile, colIndex) in row"
           :key="colIndex"
-          :class="{ 'sudoku-cell-divider': colIndex % 3 === 2 }"
+          :class="{ 'sudoku-cell-divider': (colIndex + 1) % 3 === 0 }"
         >
           <input
             type="number"
@@ -44,6 +44,7 @@ export default {
         [null, null, null, null, null, null, null, null, null],
         [null, null, null, null, null, null, null, null, null],
       ],
+      win: false,
     };
   },
   methods: {
@@ -68,6 +69,7 @@ export default {
 
       // If there are no empty cells, the Sudoku puzzle is solved
       if (!emptyCell) {
+        console.log("winner winner chicken dinner");
         return true;
       }
 
@@ -80,6 +82,7 @@ export default {
 
           // Recursively attempt to solve the rest of the puzzle
           if (this.solveSudoku()) {
+            this.win = true;
             return true;
           }
 
@@ -159,15 +162,15 @@ input {
   font-weight: bold;
   text-align: center;
   outline: none;
-  border: 3px solid transparent;
-  transition: border 0.3s;
+  border: 5px solid transparent;
+  transition: border 0.3s ease-in-out;
 
   -moz-appearance: textfield;
   appearance: none;
 }
 
 input:focus {
-  border: 3px solid orange;
+  border: 5px solid orange;
 }
 
 input::-webkit-inner-spin-button,
@@ -176,12 +179,29 @@ input::-webkit-outer-spin-button {
   margin: 0;
 }
 
+#sudokuBoard {
+  border: 5px solid white;
+  padding: 20px;
+}
+
+.greenBorder {
+  color: red;
+}
+
 .sudoku-row-divider {
   margin-bottom: 10px; /* Adjust the size of the gap between the 3x3 fields vertically */
 }
 
+.sudoku-row-divider:nth-child(9) {
+  margin: 0;
+}
+
 .sudoku-cell-divider {
   margin-right: 10px; /* Adjust the size of the gap between the 3x3 fields horizontally */
+}
+
+.sudoku-cell-divider:nth-child(9) {
+  margin: 0;
 }
 
 button {
