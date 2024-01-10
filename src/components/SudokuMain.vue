@@ -1,5 +1,6 @@
 <template>
   <main>
+    <div v-if="loading" class="loading-overlay"></div>
     <div id="sudokuBoard" :class="{ greenBorder: win }">
       <div
         v-for="(row, rowIndex) in board"
@@ -21,7 +22,12 @@
           />
         </div>
       </div>
-      <q-spinner-hourglass color="blue" size="10rem" id="spinner" />
+      <q-spinner-clock
+        v-if="loading"
+        color="orange"
+        size="15rem"
+        id="spinner"
+      />
     </div>
     <div class="buttons">
       <button id="solveSudoku" @click="solveSudoku">Solve</button>
@@ -51,6 +57,7 @@ export default {
   },
   methods: {
     async fetchSudoku() {
+      this.loading = true;
       const data = await fetch(
         `https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{value,solution,difficulty},results,message}}`
       );
@@ -65,6 +72,7 @@ export default {
       });
       console.log(modifiedSudoku);
       this.board = modifiedSudoku;
+      this.loading = false;
       this.win = false;
     },
     solveSudoku() {
@@ -183,6 +191,7 @@ input::-webkit-outer-spin-button {
 }
 
 #sudokuBoard {
+  z-index: 1;
   position: relative;
   border: 5px solid white;
   padding: 20px;
@@ -240,5 +249,16 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 165, 0, 0.1);
+  z-index: 2;
 }
 </style>
