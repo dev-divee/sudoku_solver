@@ -1,5 +1,29 @@
 <template>
   <main>
+    <div class="q-pa-md q-gutter-sm">
+      <q-dialog v-model="showPopup" persistent>
+        <q-card>
+          <q-card-section class="row items-center">
+            <q-rating
+              v-model="ratingModel"
+              max="5"
+              size="3em"
+              color="red"
+              color-selected="red-9"
+              icon="favorite_border"
+              icon-selected="favorite"
+              icon-half="favorite"
+            />
+          </q-card-section>
+
+          <q-card-actions align="right">
+            <q-btn flat label="No, thanks" color="primary" v-close-popup />
+            <q-btn flat label="Submit" color="primary" v-close-popup />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
+    </div>
+
     <div v-if="loading" class="loading-overlay"></div>
     <div id="sudokuBoard" :class="{ greenBorder: win }">
       <div
@@ -53,6 +77,8 @@ export default {
       ],
       win: false,
       loading: false,
+      showPopup: false,
+      ratingModel: 5,
     };
   },
   methods: {
@@ -150,6 +176,11 @@ export default {
 
       return true;
     },
+  },
+  mounted() {
+    setTimeout(() => {
+      this.showPopup = true;
+    }, 2000);
   },
 };
 </script>
