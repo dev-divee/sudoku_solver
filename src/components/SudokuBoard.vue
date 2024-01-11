@@ -2,8 +2,9 @@
   <main>
     <div class="q-pa-md q-gutter-sm">
       <q-dialog v-model="showPopup" persistent>
-        <q-card>
-          <q-card-section class="row items-center">
+        <q-card id="ratingDialog">
+          <q-card-section class="row column">
+            <p>Please take a few seconds and rate our website!</p>
             <q-rating
               v-model="ratingModel"
               max="5"
@@ -17,8 +18,8 @@
           </q-card-section>
 
           <q-card-actions align="right">
-            <q-btn flat label="No, thanks" color="primary" v-close-popup />
-            <q-btn flat label="Submit" color="primary" v-close-popup />
+            <q-btn flat label="No, thanks" v-close-popup />
+            <q-btn flat label="Submit" v-close-popup />
           </q-card-actions>
         </q-card>
       </q-dialog>
@@ -283,6 +284,25 @@ button {
   z-index: 3;
 }
 
+#ratingDialog {
+  background: rgb(0, 0, 20);
+  border: 3px solid lightblue;
+  color: lightblue;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+#ratingDialog p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+#ratingDialog button {
+  background: rgb(0, 0, 20);
+  color: lightblue;
+  font-size: 1.2rem;
+  padding: 0 20px;
+}
 .loading-overlay {
   position: absolute;
   top: 0;
